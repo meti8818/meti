@@ -1,0 +1,115 @@
+<div class="navbar">
+  <nav>
+    <li id="logout"><i class="fas fa-sign-out-alt"></i></li>
+    <li id="favourites"><i class="fas fa-heart"></i></li>
+    <li id="cart" class="active-item"><i class="fas fa-shopping-bag"></i></li>
+    <li id="account"><i class="fas fa-user-alt"></i></li>
+  </nav>
+  <div class="nav-left-part"></div>
+  <div class="nav-active-part"></div>
+  <div class="nav-right-part"></div>
+</div>
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+*{
+  box-sizing: border-box;
+  font-family: 'Roboto';
+}
+body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+}
+
+/* Navbar */
+.navbar{
+  width: 20rem;
+  height: 70px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 1px 1px 30px rgba(0,0,0,0.05);
+  display: flex;
+  padding: 10px 35px;
+  position: relative;
+}
+
+.navbar .nav-left-part{
+  flex-grow: 2;
+  transition: flex-grow 1s;
+}
+
+.navbar .nav-right-part{
+  flex-grow: 1;
+  transition: flex-grow 1s;
+}
+
+.navbar .nav-active-part{
+  background-color: dodgerblue;
+  width: 50px;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 1px 3px 15px dodgerblue;
+}
+
+nav{
+  position: absolute;
+  width: calc(100% - 70px);
+  height: 100%;
+  top: 0;
+  left: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+nav li{
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  cursor: pointer;
+  transition: all 1s;
+}
+
+.active-item{
+  font-size: 20px;
+  color: white;
+}
+$('document').ready(()=>{
+  $('body').css('height',window.innerHeight);
+  
+//   Jquery
+  $('nav li').on("click",function(){
+    let right = 0;
+    let left = 0;
+    switch($(this).attr('id')){
+      case 'logout':
+        left = 0;
+        right = 1;
+        break;
+      case 'favourites':
+        left = 1;
+        right = 2;
+        break;
+      case 'cart':
+        left = 2;
+        right = 1;
+        break;
+      case 'account':
+        left = 1;
+        right = 0;
+        break;
+    }
+    $('.nav-left-part').css('flex-grow',left);
+    $('.nav-right-part').css('flex-grow',right);
+    $('nav li').removeClass('active-item');
+    $(this).addClass('active-item');
+  })
+  
+})
+
